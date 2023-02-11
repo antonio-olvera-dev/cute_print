@@ -1,5 +1,6 @@
 [package]
 name = "cute_print"
+authors = ["Antonio Olvera <antonio.olvera.dev@gmail.com>"]
 version = "0.1.0"
 edition = "2021"
 license = "GNU Lesser General Public License (LGPL) version 2.1"
