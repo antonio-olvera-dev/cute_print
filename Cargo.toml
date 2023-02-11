@@ -2,7 +2,8 @@
 name = "cute_print"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "GNU Lesser General Public License (LGPL) version 2.1"
+license-file = "./license/license.md"
+exclude = ["./src/main.rs"]
 
 [dependencies]
