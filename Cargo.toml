@@ -4,8 +4,7 @@ authors = ["Antonio Olvera <antonio.olvera.dev@gmail.com>"]
 version = "0.1.0"
 description = "An easy and beautiful way to print"
 edition = "2021"
-license = "GNU Lesser General Public License (LGPL) version 2.1"
-license-file = "./license/license.md"
+license = "MIT OR Apache-2.0"
 exclude = ["./src/main.rs"]
 
 [dependencies]
