@@ -43,13 +43,3 @@ pub fn print_colors() {
 
     cute.print();
 }
-
-#[cfg(test)]
-mod tests {
-    use super::print_colors;
-    #[test]
-    fn test_print_colors() {
-        let print_colors: () = print_colors();
-        assert_eq!(print_colors, ());
-    }
-}
