@@ -19,5 +19,4 @@ fn main() {
         .yellow();
 
     cute_print.print();
-    print!("{}", &"123"[0..3])
 }

@@ -14,6 +14,32 @@ fn main() {
 }
 ```
 
+## Simple example to print a line and add text with different color
+
+```rust
+use cute_print::CutePrint;
+
+fn main() {
+    let mut cute_print: CutePrint = CutePrint::new();
+
+    cute_print
+        .add_line("yellow on bright black, line 1")
+        .yellow()
+        .on_bright_black();
+
+    cute_print
+        .add_line("red on blue, line 2.")
+        .red()
+        .on_blue()
+        .add_text(" added green text, ")
+        .green()
+        .add_text("added yellow text.")
+        .yellow();
+
+    cute_print.print();
+}
+```
+
 
 ## Example to see all text colours and backgrounds 
 
