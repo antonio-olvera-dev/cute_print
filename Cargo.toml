@@ -9,6 +9,6 @@ exclude = ["./src/main.rs"]
 repository = "https://github.com/antonio-olvera-dev/cute_print"
 documentation = "https://docs.rs/cute_print"
 rust-version = "1.56"
-keywords = ["CutePrint", "cute_print", "colored", "styled", "background", "terminal", "console", "print", "output"]
+keywords = ["CutePrint", "colored", "terminal", "console", "output"]
 categories = ["console", "output", "terminal", "colors", "style", "cli"]
 [dependencies]
