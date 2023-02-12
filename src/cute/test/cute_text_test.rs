@@ -65,6 +65,7 @@ mod cute_text_test {
         let cute_text: CuteText = CuteText {
             text: String::new(),
             color_list: ColorList::new(),
+            prev_len: 0
         };
 
         let cute_text_new: CuteText = CuteText::new();
