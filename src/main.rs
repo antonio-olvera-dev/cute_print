@@ -1,8 +1,11 @@
-use cute_print::{examples::example_colors, CutePrint};
+use cute_print::{example_colors::print_colors, CutePrint};
 fn main() {
-    example_colors::print_colors();
-    let mut  c = CutePrint::new();
-    c.add_line("example").yellow().on_bright_black();
-    c.print();
+    print_colors();
 
+    let mut cute_print: CutePrint = CutePrint::new();
+    cute_print
+        .add_line("yellow on bright black")
+        .yellow()
+        .on_bright_black();
+    cute_print.print();
 }

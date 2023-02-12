@@ -1,5 +1,7 @@
 use super::super::CutePrint;
 
+/// Prints a demonstration of all the color and background color combinations
+/// supported by the `CutePrint` struct.
 pub fn print_colors() {
     let mut cute: CutePrint = CutePrint::new();
 

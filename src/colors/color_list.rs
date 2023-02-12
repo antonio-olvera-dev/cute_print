@@ -1,3 +1,4 @@
+/// A structure that holds different ANSI escape codes for color manipulation in the terminal.
 pub struct ColorList {
     pub reset: &'static str,
     pub black_fg: &'static str,
@@ -34,6 +35,7 @@ pub struct ColorList {
     pub bright_white_bg: &'static str,
 }
 impl ColorList {
+    /// Creates a new instance of `ColorList` with default ANSI escape codes for color manipulation.
     pub fn new() -> Self {
         ColorList {
             reset: "\x1b[0m",
