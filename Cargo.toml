@@ -7,4 +7,8 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 exclude = ["./src/main.rs"]
 repository = "https://github.com/antonio-olvera-dev/cute_print"
+documentation = "https://docs.rs/cute_print"
+rust-version = "1.56"
+keywords = ["CutePrint", "cute_print", "colored", "styled", "background", "terminal", "console", "print", "output"]
+categories = ["console", "output", "terminal", "colors", "style", "cli"]
 [dependencies]
