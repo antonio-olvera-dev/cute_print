@@ -65,10 +65,29 @@ mod cute_text_test {
         let cute_text: CuteText = CuteText {
             text: String::new(),
             color_list: ColorList::new(),
-            prev_len: 0
+            prev_len: 0,
         };
 
         let cute_text_new: CuteText = CuteText::new();
         assert_eq!(cute_text, cute_text_new);
+    }
+
+    #[test]
+    fn add_text() {
+        let color_list: ColorList = ColorList::new();
+        let mut cute_text: CuteText = CuteText::new();
+
+        let text_for_mock_line: String = String::from("Initial Text");
+        let mock_line: String =
+            color_list.red_fg.to_string() + &text_for_mock_line + color_list.reset;
+
+        let text_for_add: &str = "text added";
+        let added_text_expected: String =
+            color_list.green_fg.to_owned() + text_for_add + color_list.reset;
+        let expected_text: String = mock_line.clone() + &added_text_expected;
+
+        cute_text.text = mock_line;
+        cute_text.add_text(text_for_add);
+        assert_eq!(expected_text, cute_text.green().text);
     }
 }

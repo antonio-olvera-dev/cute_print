@@ -1,6 +1,7 @@
 use super::super::ColorList;
 
-/// The `CuteText` struct contains a string of text, a reference to a `ColorList` and prev_len that is len of text before run add_text.
+/// The `CuteText` struct contains a string of text, a reference to a `ColorList`
+/// and prev_len that is length of text before run add_text.
 pub struct CuteText {
     pub text: String,
     pub color_list: ColorList,
@@ -209,20 +210,38 @@ impl CuteText {
         self
     }
 
-    /// This function sets XXXX.
+    /// This function fills the variable self.prev_len with the length of the text before the new text is added
+    /// and then adds the text passed as a parameter to self.text.
+    ///
+    /// # Arguments
+    ///
+    /// `text: &str` - The text that will be added to the self.text.
+    ///
+    /// # Returns
+    ///
+    /// `&mut Self ` - A mutable reference to the updated
     pub fn add_text(&mut self, text: &str) -> &mut Self {
         self.prev_len = self.text.len();
         self.text = self.text.to_string() + text;
         self
     }
 
-    /// This function sets XXXX.
+    /// Adds the color passed by parameter to `self.text` and updates its text.
+    /// If `self.prev_len` is greater than 0 it extracts the text that was there before using the `add_text` function and adds the color to the text that was added when using the `add_text` function.
+    ///
+    /// # Arguments
+    ///
+    /// `color: &str` - The color that will be added to the `self.text`.
+    ///
+    /// # Returns
+    ///
+    /// `&mut Self` - A mutable reference to the updated `self.text`.
     fn add_color(&mut self, color: &str) -> &mut Self {
         if self.prev_len > 0 {
-            let prev_text = &self.text[0..self.prev_len];
-            let after_text = &self.text[self.prev_len..self.text.len()];
-            let new_text = prev_text.to_owned() + color + after_text;
-            self.text = new_text;
+            let before_text: &str = &self.text[0..self.prev_len];
+            let after_text: &str = &self.text[self.prev_len..self.text.len()];
+            let modified_text: String = before_text.to_owned() + color + after_text;
+            self.text = modified_text;
         }
 
         if self.prev_len == 0 {
