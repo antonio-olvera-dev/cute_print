@@ -44,6 +44,46 @@ mod tests {
     }
 
     #[test]
+    fn add_text_at_the_beginning() {
+        let color_list: ColorList = ColorList::new();
+        let mut cute_print: CutePrint = CutePrint::new();
+
+        let text_for_mock_line: String = String::from("Initial Text");
+        let text_for_add: &str = "Initial Text 2";
+
+        cute_print.add_line(&text_for_mock_line).red().on_green();
+        cute_print
+            .add_line(&text_for_mock_line)
+            .red()
+            .on_green()
+            .add_text(text_for_add)
+            .blue();
+        cute_print.to_numbered_list();
+
+        let text_at_the_beginning: &str = "1. ";
+        let text_at_the_beginning2: &str = "2. ";
+        let expected_text: String = color_list.green_bg.to_owned()
+            + color_list.red_fg
+            + text_at_the_beginning
+            + &text_for_mock_line
+            + color_list.reset
+            + color_list.reset;
+
+        let expected_text2: String = color_list.green_bg.to_owned()
+            + color_list.red_fg
+            + text_at_the_beginning2
+            + &text_for_mock_line
+            + color_list.reset
+            + color_list.reset
+            + color_list.blue_fg
+            + text_for_add
+            + color_list.reset;
+
+        assert_eq!(expected_text, cute_print.cute_text_list[0].text);
+        assert_eq!(expected_text2, cute_print.cute_text_list[1].text);
+    }
+
+    #[test]
     fn test_cute_print_print() {
         let mut cute_print: CutePrint = CutePrint::new();
         cute_print.add_line("red on_black").red().on_black();

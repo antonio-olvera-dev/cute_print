@@ -18,5 +18,9 @@ fn main() {
         .add_text("added yellow text.")
         .yellow();
 
+    cute_print.add_line("normal text");
+    cute_print.add_line("text");
+    
+    cute_print.to_numbered_list();
     cute_print.print();
 }

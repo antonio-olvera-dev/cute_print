@@ -41,3 +41,17 @@ impl CutePrint {
         }
     }
 }
+
+impl CutePrint {
+    /// Transforms the text into a numbered list
+    pub fn to_numbered_list(&mut self) {
+        let point: &str = ".";
+        let space: &str = " ";
+        let space_more_point: String = point.to_owned() + space;
+
+        for (index, cute_text) in &mut self.cute_text_list.iter_mut().enumerate() {
+            let text_to_add: String = (index + 1).to_string() + &space_more_point;
+            cute_text.add_text_at_the_beginning(&text_to_add);
+        }
+    }
+}

@@ -1,11 +1,12 @@
 use super::super::ColorList;
 
 /// The `CuteText` struct contains a string of text, a reference to a `ColorList`
-/// and prev_len that is length of text before run add_text.
+/// prev_len that is length of text before run add_text, and color_before_text_length is the length of the color before the text.
 pub struct CuteText {
     pub text: String,
     pub color_list: ColorList,
     pub prev_len: usize,
+    pub color_before_text_length: usize,
 }
 
 impl CuteText {
@@ -15,6 +16,7 @@ impl CuteText {
             text: String::new(),
             color_list: ColorList::new(),
             prev_len: 0,
+            color_before_text_length: 0,
         }
     }
 
@@ -245,9 +247,19 @@ impl CuteText {
         }
 
         if self.prev_len == 0 {
+            self.color_before_text_length += color.len();
             self.text = color.to_string() + &self.text;
         }
         self.text = self.text.to_owned() + self.color_list.reset;
+        self
+    }
+
+    /// Adds a new text at the beginning of the current text applying its colors.
+    pub fn add_text_at_the_beginning(&mut self, text_to_add: &str) -> &mut Self {
+        let text: &str = &self.text[self.color_before_text_length..self.text.len()];
+        let color: &str = &self.text[0..self.color_before_text_length];
+        let new_text: String = color.to_owned() + text_to_add + text;
+        self.text = new_text;
         self
     }
 }

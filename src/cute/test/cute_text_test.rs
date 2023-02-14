@@ -66,6 +66,7 @@ mod cute_text_test {
             text: String::new(),
             color_list: ColorList::new(),
             prev_len: 0,
+            color_before_text_length: 0,
         };
 
         let cute_text_new: CuteText = CuteText::new();
@@ -89,5 +90,26 @@ mod cute_text_test {
         cute_text.text = mock_line;
         cute_text.add_text(text_for_add);
         assert_eq!(expected_text, cute_text.green().text);
+    }
+
+    #[test]
+    fn add_text_at_the_beginning() {
+        let color_list: ColorList = ColorList::new();
+        let mut cute_text: CuteText = CuteText::new();
+
+        let text_for_mock_line: String = String::from("Initial Text");
+        let mock_line: String =
+            color_list.red_fg.to_string() + &text_for_mock_line + color_list.reset;
+
+        let text_at_the_beginning: &str = "1. ";
+        let expected_text: String = color_list.red_fg.to_owned()
+            + text_at_the_beginning
+            + &text_for_mock_line
+            + color_list.reset;
+
+        cute_text.text = mock_line;
+        cute_text.color_before_text_length = color_list.red_fg.len();
+        cute_text.add_text_at_the_beginning(text_at_the_beginning);
+        assert_eq!(expected_text, cute_text.text);
     }
 }
