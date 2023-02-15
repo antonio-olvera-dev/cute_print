@@ -1,8 +1,7 @@
-pub mod cute;
 pub mod colors;
+pub mod cute;
 pub mod examples;
-pub mod utils;
-pub use cute::*;
+pub mod terminal;
 pub use colors::*;
+pub use cute::*;
 pub use examples::*;
-pub use utils::*;
