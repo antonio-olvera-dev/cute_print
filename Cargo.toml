@@ -12,3 +12,4 @@ rust-version = "1.56"
 keywords = ["CutePrint", "colored", "terminal", "console", "output"]
 categories = ["console", "output", "terminal", "style", "cli"]
 [dependencies]
+libc = "0.2.139"

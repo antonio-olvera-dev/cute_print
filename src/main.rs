@@ -1,4 +1,4 @@
-use cute_print::{example_colors::print_colors, CutePrint};
+use cute_print::{example_colors::print_colors, CutePrint, get_terminal_width};
 fn main() {
     print_colors();
 
@@ -20,7 +20,10 @@ fn main() {
 
     cute_print.add_line("normal text");
     cute_print.add_line("text");
+    cute_print.add_line("---------------------------------------------------------");
     
     cute_print.to_numbered_list();
     cute_print.print();
+    print!("{}",get_terminal_width().unwrap());
+
 }
