@@ -10,7 +10,7 @@
     target_os = "openbsd",
     target_os = "solaris"
 ))]
-mod unix;
+mod unix_test;
 
 #[cfg(target_os = "windows")]
-mod windows;
+mod windows_test;
