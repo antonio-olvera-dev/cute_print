@@ -29,3 +29,5 @@ pub use unix::get_terminal_width;
 pub mod windows;
 #[cfg(target_os = "windows")]
 pub use windows::get_terminal_width;
+
+mod test;
