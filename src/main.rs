@@ -1,4 +1,4 @@
-use cute_print::{example_colors::print_colors, get_terminal_width, CutePrint};
+use cute_print::{example_colors::print_colors, CutePrint};
 fn main() {
     print_colors();
 
