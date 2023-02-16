@@ -1,4 +1,5 @@
 use super::cute_text::CuteText;
+use crate::get_terminal_width;
 
 /// CutePrint struct is used to store and print a list of `CuteText` objects.
 pub struct CutePrint {
@@ -53,5 +54,16 @@ impl CutePrint {
             let text_to_add: String = (index + 1).to_string() + &space_more_point;
             cute_text.add_text_at_the_beginning(&text_to_add);
         }
+    }
+
+    /// Adds a new line with the specified character
+    pub fn split(&mut self, character_for_print: char) {
+        let type_split: &str = &character_for_print.to_string();
+        let width_terminal: u16 = match get_terminal_width() {
+            Some(width) => width,
+            None => 3,
+        };
+
+        self.add_line(&type_split.repeat(width_terminal as usize));
     }
 }

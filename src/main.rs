@@ -20,9 +20,8 @@ fn main() {
 
     cute_print.add_line("normal text");
     cute_print.add_line("text");
-    cute_print.add_line("---------------------------------------------------------");
 
     cute_print.to_numbered_list();
+    cute_print.split('-');
     cute_print.print();
-    print!("{}", get_terminal_width().unwrap());
 }
