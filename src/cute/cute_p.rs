@@ -66,4 +66,15 @@ impl CutePrint {
 
         self.add_line(&type_split.repeat(width_terminal as usize));
     }
+
+    /// Adds a new cute line with the specified character
+    pub fn split_cute(&mut self, cute_text: CuteText) {
+        let type_split: &str = &cute_text.text;
+        let width_terminal: u16 = match get_terminal_width() {
+            Some(width) => width,
+            None => 3,
+        };
+
+        self.add_line(&type_split.repeat(width_terminal as usize));
+    }
 }
