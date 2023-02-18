@@ -8,6 +8,24 @@ pub struct CutePrint {
 }
 
 impl CutePrint {
+    fn get_last_cute_text(&mut self) -> &mut CuteText {
+        let length: usize = self.cute_text_list.len() - 1;
+        return &mut self.cute_text_list[length];
+    }
+
+    fn add_cute_text_with_repeated_character(
+        &mut self,
+        character_for_print: char,
+        repetitions: u16,
+    ) {
+        let mut cute_text = CuteText::new();
+
+        cute_text.text = character_for_print.to_string().repeat(repetitions as usize);
+        self.cute_text_list.push(cute_text);
+    }
+}
+
+impl CutePrint {
     /// Creates a new instance of the `CutePrint` struct.
 
     pub fn new() -> Self {
@@ -31,8 +49,7 @@ impl CutePrint {
         cute_text.text = text.to_string();
         self.cute_text_list.push(cute_text);
 
-        let length = self.cute_text_list.len() - 1;
-        return &mut self.cute_text_list[length];
+        return self.get_last_cute_text();
     }
 
     /// Prints all lines in the `cute_text_list`.
@@ -41,9 +58,7 @@ impl CutePrint {
             println!("{}", line.text)
         }
     }
-}
 
-impl CutePrint {
     /// Transforms the text into a numbered list
     pub fn to_numbered_list(&mut self) {
         let point: &str = ".";
@@ -56,25 +71,34 @@ impl CutePrint {
         }
     }
 
-    /// Adds a new line with the specified character
-    pub fn split(&mut self, character_for_print: char) {
-        let type_split: &str = &character_for_print.to_string();
+    /// Adds a new cute line with the specified character and repeat it whit the specificated number.
+    /// If the number is equal to None the line  repeat to fill terminal width.
+    /// 
+    /// # Arguments
+    ///
+    /// * `character_for_print: char` - The char that will be added to the list and repeat.
+    /// * `number_of_repetitions: Option<u16>` - The repetition number of char.
+    ///
+    /// # Returns
+    ///
+    /// Returns a mutable reference to the newly added `CuteText` object.
+    pub fn split(
+        &mut self,
+        character_for_print: char,
+        number_of_repetitions: Option<u16>,
+    ) -> &mut CuteText {
         let width_terminal: u16 = match get_terminal_width() {
             Some(width) => width,
             None => 3,
         };
 
-        self.add_line(&type_split.repeat(width_terminal as usize));
-    }
-
-    /// Adds a new cute line with the specified character
-    pub fn split_cute(&mut self, cute_text: CuteText) {
-        let type_split: &str = &cute_text.text;
-        let width_terminal: u16 = match get_terminal_width() {
-            Some(width) => width,
-            None => 3,
+        let repetitions = match number_of_repetitions {
+            Some(rep) => rep,
+            None => width_terminal,
         };
 
-        self.add_line(&type_split.repeat(width_terminal as usize));
+        self.add_cute_text_with_repeated_character(character_for_print, repetitions);
+
+        return self.get_last_cute_text();
     }
 }

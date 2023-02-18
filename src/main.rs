@@ -1,4 +1,4 @@
-use cute_print::{example_colors::print_colors, CutePrint, CuteText};
+use cute_print::{example_colors::print_colors, CutePrint};
 fn main() {
     print_colors();
 
@@ -22,17 +22,15 @@ fn main() {
     cute_print.add_line("text");
 
     cute_print.to_numbered_list();
-    cute_print.split('-');
 
-    let mut split_cute: CuteText = CuteText::new();
-    split_cute.add_text("=").red();
-    cute_print.split_cute(split_cute);
-    let mut split_cute: CuteText = CuteText::new();
-    split_cute.add_text("=").yellow();
-    cute_print.split_cute(split_cute);
-    let mut split_cute: CuteText = CuteText::new();
-    split_cute.add_text("=").red();
-    cute_print.split_cute(split_cute);
+    cute_print.split('-', None);
 
+    cute_print.split('=', None).red();
+    cute_print.split('=', None).yellow();
+    cute_print.split('=', None).red();
+
+    cute_print.split(':', Some(4)).green();
+    cute_print.split(':', Some(8)).white();
+    cute_print.split(':', None).green();
     cute_print.print();
 }
