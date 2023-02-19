@@ -1,6 +1,6 @@
 #[cfg(test)]
-mod tests {
-    use crate::{ColorList, CutePrint};
+mod cute_tests {
+    use crate::{ColorList, CutePrint, StyleList};
 
     impl PartialEq for CutePrint {
         fn eq(&self, other: &Self) -> bool {
@@ -10,7 +10,7 @@ mod tests {
     }
 
     #[test]
-    fn test_cute_print_new() {
+    fn test_new() {
         let mut cute_print_new: CutePrint = CutePrint::new();
         let mut cute_print: CutePrint = CutePrint {
             cute_text_list: Vec::new(),
@@ -24,7 +24,7 @@ mod tests {
     }
 
     #[test]
-    fn test_cute_print_add_line() {
+    fn test_add_line() {
         let mut cute_print: CutePrint = CutePrint::new();
 
         assert_eq!(cute_print.cute_text_list.len(), 0);
@@ -44,7 +44,7 @@ mod tests {
     }
 
     #[test]
-    fn add_text_at_the_beginning() {
+    fn test_add_text() {
         let color_list: ColorList = ColorList::new();
         let mut cute_print: CutePrint = CutePrint::new();
 
@@ -84,14 +84,14 @@ mod tests {
     }
 
     #[test]
-    fn test_cute_print_print() {
+    fn test_print() {
         let mut cute_print: CutePrint = CutePrint::new();
         cute_print.add_line("red on_black").red().on_black();
         assert_eq!(cute_print.print(), ());
     }
 
     #[test]
-    fn split_test() {
+    fn test_split() {
         let color_list: ColorList = ColorList::new();
         let mut cute_print: CutePrint = CutePrint::new();
         let mut character_for_print: char = '-';
@@ -144,7 +144,7 @@ mod tests {
     }
 
     #[test]
-    fn line_break() {
+    fn test_line_break() {
         let mut cute_print: CutePrint = CutePrint::new();
         let expected_text: &str = "text 1";
         let expected_text2: &str = "";
@@ -156,5 +156,24 @@ mod tests {
         assert_eq!(cute_print.cute_text_list[0].text, expected_text);
         assert_eq!(cute_print.cute_text_list[1].text, expected_text2);
         assert_eq!(cute_print.cute_text_list[2].text, expected_text3);
+    }
+
+    #[test]
+    fn test_styles() {
+        let style_list: StyleList = StyleList::new();
+        let color_list: ColorList = ColorList::new();
+        let mut cute_print: CutePrint = CutePrint::new();
+        let text_1: &str = "text 1";
+        let text_2: &str = "text 2";
+
+        let expected_1: String = style_list.bold.to_owned() + text_1 + color_list.reset;
+        let expected_2: String =
+            style_list.dim.to_owned() + color_list.red_fg + text_2 + &color_list.reset.repeat(2);
+
+        cute_print.add_line(text_1).bold();
+        assert_eq!(cute_print.cute_text_list[0].text, expected_1);
+
+        cute_print.add_line(text_2).red().dim();
+        assert_eq!(cute_print.cute_text_list[1].text, expected_2);
     }
 }

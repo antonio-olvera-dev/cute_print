@@ -14,6 +14,27 @@ fn main() {
 }
 ```
 
+## Simple example to print text styles
+
+```rust
+use cute_print::CutePrint;
+
+fn main() {
+    let mut cute_print: CutePrint = CutePrint::new();
+
+    cute_print.add_line("normal text");
+    cute_print.add_line("bold text").bold();
+    cute_print.add_line("dim text").dim();
+    cute_print.add_line("underline text").underline();
+    cute_print.add_line("blink text").blink();
+    cute_print.add_line("reverse text").reverse();
+    cute_print.add_line("hidden text").hidden();
+    cute_print.to_numbered_list();
+
+    cute_print.print();
+}
+```
+
 ## Simple example to print line break
 
 ```rust

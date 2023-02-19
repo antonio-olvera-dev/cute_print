@@ -11,9 +11,13 @@ fn main() {
     cute_print_title.line_break();
     cute_print_title.print();
 
-    cute_print.add_line("read file");
-    cute_print.add_line("delete file");
-    cute_print.add_line("write file");
+    cute_print.add_line("normal text");
+    cute_print.add_line("bold text").bold();
+    cute_print.add_line("dim text").dim();
+    cute_print.add_line("underline text").underline();
+    cute_print.add_line("blink text").blink();
+    cute_print.add_line("reverse text").reverse();
+    cute_print.add_line("hidden text").hidden();
     cute_print.to_numbered_list();
 
     cute_print.split('-', None);
