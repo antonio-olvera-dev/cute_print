@@ -1,7 +1,7 @@
 [package]
 name = "cute_print"
 authors = ["Antonio Olvera <antonio.olvera.dev@gmail.com>"]
-version = "0.3.0"
+version = "0.4.0"
 description = "An easy and beautiful way to print"
 edition = "2021"
 license = "MIT OR Apache-2.0"
