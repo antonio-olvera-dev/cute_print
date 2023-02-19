@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod cute_text_test {
-    use crate::{ColorList, CuteText};
+    use crate::{ColorList, CuteText, StyleList};
     use std::fmt::Debug;
 
     use std::fmt;
@@ -67,6 +67,7 @@ mod cute_text_test {
             color_list: ColorList::new(),
             prev_len: 0,
             color_before_text_length: 0,
+            style_list: StyleList::new(),
         };
 
         let cute_text_new: CuteText = CuteText::new();

@@ -1,3 +1,5 @@
+use crate::StyleList;
+
 use super::super::ColorList;
 
 /// The `CuteText` struct contains a string of text, a reference to a `ColorList`
@@ -7,6 +9,7 @@ pub struct CuteText {
     pub color_list: ColorList,
     pub prev_len: usize,
     pub color_before_text_length: usize,
+    pub style_list: StyleList,
 }
 
 impl CuteText {
@@ -17,6 +20,7 @@ impl CuteText {
             color_list: ColorList::new(),
             prev_len: 0,
             color_before_text_length: 0,
+            style_list: StyleList::new(),
         }
     }
 
@@ -212,6 +216,30 @@ impl CuteText {
         self
     }
 
+    pub fn bold(&mut self) -> &mut Self {
+        self.add_style(self.style_list.bold);
+        self
+    }
+    pub fn dim(&mut self) -> &mut Self {
+        self.add_style(self.style_list.dim);
+        self
+    }
+    pub fn underline(&mut self) -> &mut Self {
+        self.add_style(self.style_list.underline);
+        self
+    }
+    pub fn blink(&mut self) -> &mut Self {
+        self.add_style(self.style_list.blink);
+        self
+    }
+    pub fn reverse(&mut self) -> &mut Self {
+        self.add_style(self.style_list.reverse);
+        self
+    }
+    pub fn hidden(&mut self) -> &mut Self {
+        self.add_style(self.style_list.hidden);
+        self
+    }
     /// This function fills the variable self.prev_len with the length of the text before the new text is added
     /// and then adds the text passed as a parameter to self.text.
     ///
@@ -249,6 +277,23 @@ impl CuteText {
         if self.prev_len == 0 {
             self.color_before_text_length += color.len();
             self.text = color.to_string() + &self.text;
+        }
+        self.text = self.text.to_owned() + self.color_list.reset;
+        self
+    }
+
+    // TODO documentation
+    fn add_style(&mut self, style: &str) -> &mut Self {
+        if self.prev_len > 0 {
+            let before_text: &str = &self.text[0..self.prev_len];
+            let after_text: &str = &self.text[self.prev_len..self.text.len()];
+            let modified_text: String = before_text.to_owned() + style + after_text;
+            self.text = modified_text;
+        }
+
+        if self.prev_len == 0 {
+            self.color_before_text_length += style.len();
+            self.text = style.to_string() + &self.text;
         }
         self.text = self.text.to_owned() + self.color_list.reset;
         self
