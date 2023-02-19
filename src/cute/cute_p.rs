@@ -18,7 +18,7 @@ impl CutePrint {
         character_for_print: char,
         repetitions: u16,
     ) {
-        let mut cute_text = CuteText::new();
+        let mut cute_text: CuteText = CuteText::new();
 
         cute_text.text = character_for_print.to_string().repeat(repetitions as usize);
         self.cute_text_list.push(cute_text);
@@ -73,7 +73,7 @@ impl CutePrint {
 
     /// Adds a new cute line with the specified character and repeat it whit the specificated number.
     /// If the number is equal to None the line  repeat to fill terminal width.
-    /// 
+    ///
     /// # Arguments
     ///
     /// * `character_for_print: char` - The char that will be added to the list and repeat.
@@ -92,7 +92,7 @@ impl CutePrint {
             None => 3,
         };
 
-        let repetitions = match number_of_repetitions {
+        let repetitions: u16 = match number_of_repetitions {
             Some(rep) => rep,
             None => width_terminal,
         };
@@ -100,5 +100,11 @@ impl CutePrint {
         self.add_cute_text_with_repeated_character(character_for_print, repetitions);
 
         return self.get_last_cute_text();
+    }
+
+    /// Add a CuteText with empty text for line break.
+    pub fn line_break(&mut self) {
+        let cute_text: CuteText = CuteText::new();
+        self.cute_text_list.push(cute_text);
     }
 }

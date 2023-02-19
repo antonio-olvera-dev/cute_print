@@ -91,7 +91,7 @@ mod tests {
     }
 
     #[test]
-    pub fn split_test() {
+    fn split_test() {
         let color_list: ColorList = ColorList::new();
         let mut cute_print: CutePrint = CutePrint::new();
         let mut character_for_print: char = '-';
@@ -141,5 +141,20 @@ mod tests {
             .add_text("text")
             .red();
         assert_eq!(cute_print.cute_text_list[4].text, expected_text);
+    }
+
+    #[test]
+    fn line_break() {
+        let mut cute_print: CutePrint = CutePrint::new();
+        let expected_text: &str = "text 1";
+        let expected_text2: &str = "";
+        let expected_text3: &str = "text 2";
+        cute_print.add_line(expected_text);
+        cute_print.line_break();
+        cute_print.add_line(expected_text3);
+
+        assert_eq!(cute_print.cute_text_list[0].text, expected_text);
+        assert_eq!(cute_print.cute_text_list[1].text, expected_text2);
+        assert_eq!(cute_print.cute_text_list[2].text, expected_text3);
     }
 }

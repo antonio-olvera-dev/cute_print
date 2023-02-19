@@ -8,7 +8,7 @@ fn main() {
     cute_print_title
         .add_line("Choose an option")
         .magenta();
-    cute_print_title.add_line("");
+    cute_print_title.line_break();
     cute_print_title.print();
 
     cute_print.add_line("read file");
@@ -17,10 +17,13 @@ fn main() {
     cute_print.to_numbered_list();
 
     cute_print.split('-', None);
+    cute_print.line_break();
 
     cute_print.split('=', None).red();
     cute_print.split('=', None).yellow();
     cute_print.split('=', None).red();
+    cute_print.line_break();
+
 
     cute_print.split(':', Some(4)).green();
     cute_print.split(':', Some(8)).white();

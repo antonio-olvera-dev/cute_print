@@ -14,6 +14,20 @@ fn main() {
 }
 ```
 
+## Simple example to print line break
+
+```rust
+use cute_print::CutePrint;
+
+fn main() {
+    let mut cute_print = CutePrint::new();
+    cute_print.add_line("Line 1").magenta();
+    cute_print.line_break();
+    cute_print.add_line("Line 2").cyan();
+    cute_print.print();
+}
+```
+
 ## Simple example to print a line and add text with different color
 
 ```rust
