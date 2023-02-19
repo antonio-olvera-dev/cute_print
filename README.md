@@ -39,6 +39,7 @@ fn main() {
     cute_print.print();
 }
 ```
+
 ## Simple example to print a numbered list
 
 ```rust
@@ -68,6 +69,27 @@ fn main() {
 }
 ```
 
+## Simple example to print a split lines
+
+```rust
+use cute_print::CutePrint;
+
+fn main() {
+
+    let mut cute_print: CutePrint = CutePrint::new();
+
+    cute_print.split('-', None);
+
+    cute_print.split('=', None).red();
+    cute_print.split('=', None).yellow();
+    cute_print.split('=', None).red();
+
+    cute_print.split(':', Some(4)).green();
+    cute_print.split(':', Some(8)).white();
+    cute_print.split(':', None).green();
+    cute_print.print();
+}
+```
 
 ## Example to see all text colours and backgrounds 
 
@@ -80,6 +102,7 @@ fn main() {
 ```
 
 ## The above example executes this function
+
 ```rust
 /// Prints a demonstration of all the color and background color combinations
 /// supported by the `CutePrint` struct.
