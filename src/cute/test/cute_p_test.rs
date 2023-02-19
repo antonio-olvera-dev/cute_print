@@ -89,4 +89,57 @@ mod tests {
         cute_print.add_line("red on_black").red().on_black();
         assert_eq!(cute_print.print(), ());
     }
+
+    #[test]
+    pub fn split_test() {
+        let color_list: ColorList = ColorList::new();
+        let mut cute_print: CutePrint = CutePrint::new();
+        let mut character_for_print: char = '-';
+        let mut number_of_repetitions: Option<u16> = None;
+        let mut expected_text: &str = "---";
+
+        cute_print.split(character_for_print, number_of_repetitions);
+        assert!(cute_print.cute_text_list[0].text.contains(expected_text));
+
+        number_of_repetitions = Some(4);
+        cute_print.split(character_for_print, number_of_repetitions);
+        expected_text = "----";
+        assert_eq!(cute_print.cute_text_list[1].text, expected_text);
+
+        character_for_print = '=';
+        number_of_repetitions = Some(2);
+        let expected_text_binding: String = color_list.blue_fg.to_owned() + "==" + color_list.reset;
+        expected_text = &expected_text_binding;
+        cute_print
+            .split(character_for_print, number_of_repetitions)
+            .blue();
+        assert_eq!(cute_print.cute_text_list[2].text, expected_text);
+
+        let expected_text_binding: String = color_list.yellow_bg.to_owned()
+            + color_list.blue_fg
+            + "=="
+            + &color_list.reset.repeat(2);
+        expected_text = &expected_text_binding;
+        cute_print
+            .split(character_for_print, number_of_repetitions)
+            .blue()
+            .on_yellow();
+        assert_eq!(cute_print.cute_text_list[3].text, expected_text);
+
+        let expected_text_binding: String = color_list.yellow_bg.to_owned()
+            + color_list.blue_fg
+            + "=="
+            + &color_list.reset.repeat(2)
+            + color_list.red_fg
+            + "text"
+            + color_list.reset;
+        expected_text = &expected_text_binding;
+        cute_print
+            .split(character_for_print, number_of_repetitions)
+            .blue()
+            .on_yellow()
+            .add_text("text")
+            .red();
+        assert_eq!(cute_print.cute_text_list[4].text, expected_text);
+    }
 }
