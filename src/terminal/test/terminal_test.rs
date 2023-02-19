@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod unix_test {
+mod terminal_test {
     use crate::get_terminal_width;
 
     #[test]

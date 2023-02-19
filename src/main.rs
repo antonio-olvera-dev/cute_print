@@ -11,6 +11,7 @@ fn main() {
     cute_print_title.line_break();
     cute_print_title.print();
 
+    cute_print.add_line("normal text");
     cute_print.add_line("bold text").bold();
     cute_print.add_line("dim text").dim();
     cute_print.add_line("underline text").underline();
