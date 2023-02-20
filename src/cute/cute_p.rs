@@ -72,6 +72,10 @@ impl CutePrint {
     }
 
     /// Transforms the text into a custom numbered list.
+    /// 
+    /// # Arguments
+    /// 
+    /// * `cute_text_for_list: CuteText` - The cute_text that will be use for added to custom list.
     pub fn to_custom_numbered_list(&mut self, cute_text_for_list: CuteText) {
         let color_list: ColorList = ColorList::new();
         let point: &str = ".";
