@@ -103,6 +103,25 @@ fn main() {
     cute_print.print();
 }
 ```
+## Simple example to print a custom numbered list
+
+```rust
+use cute_print::{CutePrint, CuteText};
+
+fn main() {
+    let mut custom_numbered_list: CutePrint = CutePrint::new();
+    custom_numbered_list.add_line("Apple");
+    custom_numbered_list.add_line("Banana");
+    custom_numbered_list.add_line("Peach");
+    custom_numbered_list.add_line("Pear");
+    custom_numbered_list.add_line("Cherry");
+
+    let mut cute_text_for_list: CuteText = CuteText::new();
+    cute_text_for_list.red().bold();
+    custom_numbered_list.to_custom_numbered_list(cute_text_for_list);
+    custom_numbered_list.print();
+}
+```
 
 ## Simple example to print a split lines
 
