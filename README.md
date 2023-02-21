@@ -103,6 +103,7 @@ fn main() {
     cute_print.print();
 }
 ```
+
 ## Simple example to print a custom numbered list
 
 ```rust
