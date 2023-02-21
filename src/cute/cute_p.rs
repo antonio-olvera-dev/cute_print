@@ -1,5 +1,5 @@
 use super::cute_text::CuteText;
-use crate::get_terminal_width;
+use crate::{get_terminal_width, ColorList};
 
 /// CutePrint struct is used to store and print a list of `CuteText` objects.
 pub struct CutePrint {
@@ -68,6 +68,29 @@ impl CutePrint {
         for (index, cute_text) in &mut self.cute_text_list.iter_mut().enumerate() {
             let text_to_add: String = (index + 1).to_string() + &space_more_point;
             cute_text.add_text_at_the_beginning(&text_to_add);
+        }
+    }
+
+    /// Transforms the text into a custom numbered list.
+    /// 
+    /// # Arguments
+    /// 
+    /// * `cute_text_for_list: CuteText` - The cute_text that will be use for added to custom list.
+    pub fn to_custom_numbered_list(&mut self, cute_text_for_list: CuteText) {
+        let color_list: ColorList = ColorList::new();
+        let point: &str = ".";
+        let space: &str = " ";
+
+        let cute_text_for_list_without_reset: String =
+            cute_text_for_list.text.replace(&color_list.reset, "");
+
+        for (index, cute_text) in &mut self.cute_text_list.iter_mut().enumerate() {
+            let text_to_add: String = cute_text_for_list_without_reset.to_owned()
+                + &(index + 1).to_string()
+                + &point
+                + color_list.reset
+                + space;
+            cute_text.text = text_to_add + &cute_text.text;
         }
     }
 

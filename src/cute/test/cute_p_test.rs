@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod cute_tests {
-    use crate::{ColorList, CutePrint, StyleList};
+    use crate::{ColorList, CutePrint, CuteText, StyleList};
 
     impl PartialEq for CutePrint {
         fn eq(&self, other: &Self) -> bool {
@@ -174,6 +174,35 @@ mod cute_tests {
         assert_eq!(cute_print.cute_text_list[0].text, expected_1);
 
         cute_print.add_line(text_2).red().dim();
+        assert_eq!(cute_print.cute_text_list[1].text, expected_2);
+    }
+
+    #[test]
+    fn test_to_custom_numbered_list() {
+        let style_list: StyleList = StyleList::new();
+        let color_list: ColorList = ColorList::new();
+        let mut cute_print: CutePrint = CutePrint::new();
+        let text: &str = "text";
+
+        let expected_1: String =
+            style_list.bold.to_owned() + color_list.red_fg + "1." + color_list.reset + " " + text;
+        let expected_2: String = style_list.bold.to_owned()
+            + color_list.red_fg
+            + "2."
+            + color_list.reset
+            + " "
+            + color_list.blue_fg
+            + text
+            + &color_list.reset.repeat(1);
+
+        cute_print.add_line(text);
+        cute_print.add_line(text).blue();
+
+        let mut cute_text_for_list: CuteText = CuteText::new();
+        cute_text_for_list.red().bold();
+        cute_print.to_custom_numbered_list(cute_text_for_list);
+
+        assert_eq!(cute_print.cute_text_list[0].text, expected_1);
         assert_eq!(cute_print.cute_text_list[1].text, expected_2);
     }
 }
